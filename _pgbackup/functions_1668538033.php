@@ -434,8 +434,8 @@ require_once "inc/custom.php";
 require_once "inc/wp_pg_helpers.php";
 require_once "inc/wc_pg_helpers.php";
 require_once "inc/wp_pg_blocks_helpers.php";
-require_once "inc/wp_simple_form_mailer.php";
 require_once "inc/wp_smart_navwalker.php";
+require_once "inc/wp_simple_form_mailer.php";
 require_once "inc/wp_pg_pagination.php";
 
     /* Pinegrow generated Include Resources End */

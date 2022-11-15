@@ -1,0 +1,14 @@
+.infocar {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.titleinfocar {
+    margin-bottom: 0;
+    font-weight: 700;
+    padding-right: 8px;
+}
+
+.infodatacar {
+    margin-bottom: 0;
+}

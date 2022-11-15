@@ -434,8 +434,8 @@ require_once "inc/custom.php";
 require_once "inc/wp_pg_helpers.php";
 require_once "inc/wc_pg_helpers.php";
 require_once "inc/wp_pg_blocks_helpers.php";
-require_once "inc/wp_simple_form_mailer.php";
 require_once "inc/wp_smart_navwalker.php";
+require_once "inc/wp_simple_form_mailer.php";
 require_once "inc/wp_pg_pagination.php";
 
     /* Pinegrow generated Include Resources End */
@@ -525,13 +525,6 @@ function starter_shop_blocks_init() {
     require_once 'blocks/front-small-banners/front-small-banners_register.php';
     require_once 'blocks/shop-front-cta/shop-front-cta_register.php';
     require_once 'blocks/shop-product-list/shop-product-list_register.php';
-    require_once 'blocks/shop-product-pick/shop-product-pick_register.php';
-    require_once 'blocks/shop-categories/shop-categories_register.php';
-    require_once 'blocks/shop-categories-select/shop-categories-select_register.php';
-    require_once 'blocks/shop-newsletter/shop-newsletter_register.php';
-    require_once 'blocks/shop-feature/shop-feature_register.php';
-    require_once 'blocks/shop-features/shop-features_register.php';
-    require_once 'blocks/shop-mosaic/shop-mosaic_register.php';
     require_once 'blocks/shop-sidebar-heading/shop-sidebar-heading_register.php';
     require_once 'blocks/shop-sidebar-search/shop-sidebar-search_register.php';
 
