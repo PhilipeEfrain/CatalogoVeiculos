@@ -21,7 +21,7 @@
         return val;
     }
     
-    const block = registerBlockType( 'catalogo-veiculos/shop-sidebar-heading', {
+    const block = registerBlockType( 'modelo2/shop-sidebar-heading', {
         apiVersion: 2,
         title: 'Shop Sidebar Heading',
         icon: 'block-default',

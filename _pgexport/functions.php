@@ -1,14 +1,14 @@
 <?php
-if ( ! function_exists( 'starter_shop_setup' ) ) :
+if ( ! function_exists( 'modelo2_setup' ) ) :
 
-function starter_shop_setup() {
+function modelo2_setup() {
 
     /*
      * Make theme available for translation.
      * Translations can be filed in the /languages/ directory.
      */
     /* Pinegrow generated Load Text Domain Begin */
-    load_theme_textdomain( 'catalogo_veiculos', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'modelo2', get_template_directory() . '/languages' );
     /* Pinegrow generated Load Text Domain End */
 
     // Add default posts and comments RSS feed links to head.
@@ -28,8 +28,8 @@ function starter_shop_setup() {
 
     // Add menus.
     register_nav_menus( array(
-        'primary' => __( 'Primary Menu', 'starter_shop' ),
-        'social'  => __( 'Social Links Menu', 'starter_shop' ),
+        'primary' => __( 'Primary Menu', 'modelo2' ),
+        'social'  => __( 'Social Links Menu', 'modelo2' ),
     ) );
 
 /*
@@ -37,9 +37,7 @@ function starter_shop_setup() {
      */
     /* Pinegrow generated Register Menus Begin */
 
-    register_nav_menu(  'footer_1', __( 'Footer Menu 1', 'catalogo_veiculos' )  );
-
-    register_nav_menu(  'footer_2', __( 'Footer Menu 2', 'catalogo_veiculos' )  );
+    register_nav_menu(  'menu_footer', __( 'Menu Footer', 'modelo2' )  );
 
     /* Pinegrow generated Register Menus End */
     
@@ -70,14 +68,14 @@ function starter_shop_setup() {
      */
      add_post_type_support( 'page', 'excerpt' );
 }
-endif; // starter_shop_setup
+endif; // modelo2_setup
 
-add_action( 'after_setup_theme', 'starter_shop_setup' );
+add_action( 'after_setup_theme', 'modelo2_setup' );
 
 
-if ( ! function_exists( 'starter_shop_init' ) ) :
+if ( ! function_exists( 'modelo2_init' ) ) :
 
-function starter_shop_init() {
+function modelo2_init() {
 
     
     // Use categories and tags with attachments
@@ -99,14 +97,14 @@ function starter_shop_init() {
     /* Pinegrow generated Taxonomies End */
 
 }
-endif; // starter_shop_setup
+endif; // modelo2_setup
 
-add_action( 'init', 'starter_shop_init' );
+add_action( 'init', 'modelo2_init' );
 
 
-if ( ! function_exists( 'starter_shop_custom_image_sizes_names' ) ) :
+if ( ! function_exists( 'modelo2_custom_image_sizes_names' ) ) :
 
-function starter_shop_custom_image_sizes_names( $sizes ) {
+function modelo2_custom_image_sizes_names( $sizes ) {
 
     /*
      * Add names of custom image sizes.
@@ -116,14 +114,14 @@ function starter_shop_custom_image_sizes_names( $sizes ) {
     /* Pinegrow generated Image Sizes Names End */
     return $sizes;
 }
-add_action( 'image_size_names_choose', 'starter_shop_custom_image_sizes_names' );
-endif;// starter_shop_custom_image_sizes_names
+add_action( 'image_size_names_choose', 'modelo2_custom_image_sizes_names' );
+endif;// modelo2_custom_image_sizes_names
 
 
 
-if ( ! function_exists( 'starter_shop_widgets_init' ) ) :
+if ( ! function_exists( 'modelo2_widgets_init' ) ) :
 
-function starter_shop_widgets_init() {
+function modelo2_widgets_init() {
 
     /*
      * Register widget areas.
@@ -131,8 +129,8 @@ function starter_shop_widgets_init() {
     /* Pinegrow generated Register Sidebars Begin */
 
     register_sidebar( array(
-        'name' => __( 'Information', 'catalogo_veiculos' ),
-        'id' => 'info',
+        'name' => __( 'Pesquisa Avançada', 'modelo2' ),
+        'id' => 'search',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3 class="widgettitle">',
@@ -140,289 +138,780 @@ function starter_shop_widgets_init() {
     ) );
 
     register_sidebar( array(
-        'name' => __( 'Shop sidebar', 'catalogo_veiculos' ),
-        'id' => 'shop',
+        'name' => __( 'Incorporar mapa', 'modelo2' ),
+        'id' => 'map',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget' => '</div>',
-        'before_title' => '<h2 class="widgettitle">',
-        'after_title' => '</h2>'
+        'before_title' => '<h3 class="widgettitle">',
+        'after_title' => '</h3>'
+    ) );
+
+    register_sidebar( array(
+        'name' => __( 'Compartilhar nas redes sociais', 'modelo2' ),
+        'id' => 'compartilhar',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widgettitle">',
+        'after_title' => '</h3>'
+    ) );
+
+    register_sidebar( array(
+        'name' => __( 'Enviar proposta', 'modelo2' ),
+        'id' => 'envie_proposta',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widgettitle">',
+        'after_title' => '</h3>'
+    ) );
+
+    register_sidebar( array(
+        'name' => __( 'Simular financiamento', 'modelo2' ),
+        'id' => 'simular_financiamento',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widgettitle">',
+        'after_title' => '</h3>'
     ) );
 
     /* Pinegrow generated Register Sidebars End */
 }
-add_action( 'widgets_init', 'starter_shop_widgets_init' );
-endif;// starter_shop_widgets_init
+add_action( 'widgets_init', 'modelo2_widgets_init' );
+endif;// modelo2_widgets_init
 
 
 
-if ( ! function_exists( 'starter_shop_customize_register' ) ) :
+if ( ! function_exists( 'modelo2_customize_register' ) ) :
 
-function starter_shop_customize_register( $wp_customize ) {
+function modelo2_customize_register( $wp_customize ) {
     // Do stuff with $wp_customize, the WP_Customize_Manager object.
 
     /* Pinegrow generated Customizer Controls Begin */
 
-    $wp_customize->add_section( 'shop_footer', array(
-        'title' => __( 'Shop footer', 'catalogo_veiculos' )
+    $wp_customize->add_section( 'top', array(
+        'title' => __( 'Topo', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'link_shop', array(
+        'title' => __( 'Link da loja', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'financieamento', array(
+        'title' => __( 'Financiamento', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'insticional', array(
+        'title' => __( 'Institucional', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'address_contact', array(
+        'title' => __( 'Informações de contato', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'navbar', array(
+        'title' => __( 'Navbar', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'footer', array(
+        'title' => __( 'Footer', 'modelo2' )
+    ));
+
+    $wp_customize->add_section( 'financieamento', array(
+        'title' => __( 'Financiamento', 'modelo2' )
     ));
     $pgwp_sanitize = function_exists('pgwp_sanitize_placeholder') ? 'pgwp_sanitize_placeholder' : null;
 
-    $wp_customize->add_setting( 'shop_footer_text', array(
+    $wp_customize->add_setting( 'top_img', array(
         'type' => 'theme_mod',
-        'default' => __( 'Duis pharetra venenatis felis, ut tincidunt ipsum consequat nec. Fusce et porttitor libero, eu aliquam nisi. Nam finibus ullamcorper semper.', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_text', array(
-        'label' => __( 'Text', 'catalogo_veiculos' ),
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'top_img', array(
+        'label' => __( 'Imagem do topo', 'modelo2' ),
+        'type' => 'media',
+        'mime_type' => 'image',
+        'section' => 'top'
+    ) ) );
+
+    $wp_customize->add_setting( 'top_call', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Adopt A Pet', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'top_call', array(
+        'label' => __( 'Chamada', 'modelo2' ),
         'type' => 'textarea',
-        'section' => 'shop_footer'
+        'section' => 'top'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_phone', array(
+    $wp_customize->add_setting( 'top_call_color', array(
         'type' => 'theme_mod',
-        'default' => __( '+1 234 567-890', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_phone', array(
-        'label' => __( 'Phone number', 'catalogo_veiculos' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'top_call_color', array(
+        'label' => __( 'Cor da chamada', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'top'
+    ) ) );
+
+    $wp_customize->add_setting( 'top_title', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Thousands of homeless dogs, one act of kindness', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'top_title', array(
+        'label' => __( 'Título', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'top'
+    ));
+
+    $wp_customize->add_setting( 'top_title_color', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'top_title_color', array(
+        'label' => __( 'Cor do título', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'top'
+    ) ) );
+
+    $wp_customize->add_setting( 'top_describe', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae congue tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac sagittis neque, vel egestas est.', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'top_describe', array(
+        'label' => __( 'Descrição', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'top'
+    ));
+
+    $wp_customize->add_setting( 'top_describe_color', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'top_describe_color', array(
+        'label' => __( 'Cor da cescrição', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'top'
+    ) ) );
+
+    $wp_customize->add_setting( 'top_button', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Learn More', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'top_button', array(
+        'label' => __( 'Botão de chamada', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'top'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_phone_url', array(
+    $wp_customize->add_setting( 'top_button_link', array(
         'type' => 'theme_mod',
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_phone_url', array(
-        'label' => __( 'Phone url', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'top_button_link', array(
+        'label' => __( 'Link do botão de chamada', 'modelo2' ),
         'type' => 'url',
-        'section' => 'shop_footer'
+        'section' => 'top'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_email', array(
+    $wp_customize->add_setting( 'top_button_color', array(
         'type' => 'theme_mod',
-        'default' => __( 'hello@company.com', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_email', array(
-        'label' => __( 'Email', 'catalogo_veiculos' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'top_button_color', array(
+        'label' => __( 'Cor do botão de chamada', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'top'
+    ) ) );
+
+    $wp_customize->add_setting( 'name_shop_button', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Veja todo o catalogo', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'name_shop_button', array(
+        'label' => __( 'Nome do botção', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'link_shop'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_email_url', array(
+    $wp_customize->add_setting( 'link_shop_button_link', array(
         'type' => 'theme_mod',
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_email_url', array(
-        'label' => __( 'Email url', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'link_shop_button_link', array(
+        'label' => __( 'Link do botão', 'modelo2' ),
         'type' => 'url',
-        'section' => 'shop_footer'
+        'section' => 'link_shop'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_colum1_heading', array(
+    $wp_customize->add_setting( 'financieamento_top', array(
         'type' => 'theme_mod',
-        'default' => __( 'About', 'catalogo_veiculos' ),
+        'default' => __( 'The Latest', 'modelo2' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_colum1_heading', array(
-        'label' => __( 'Column 1 Heading', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'financieamento_top', array(
+        'label' => __( 'Topo Texto', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'financieamento'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_column2_heading', array(
+    $wp_customize->add_setting( 'financieamento_topo_cor', array(
         'type' => 'theme_mod',
-        'default' => __( 'Services', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_column2_heading', array(
-        'label' => __( 'Column 2 Heading', 'catalogo_veiculos' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'financieamento_topo_cor', array(
+        'label' => __( 'Cor do texto de topo', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'financieamento'
+    ) ) );
+
+    $wp_customize->add_setting( 'financieamento_chamada', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Our ability to feel, act and communicate is indistinguishable from magic.', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'financieamento_chamada', array(
+        'label' => __( 'Chamada Texto', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'financieamento'
+    ));
+
+    $wp_customize->add_setting( 'financieamento_chamada_cor', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'financieamento_chamada_cor', array(
+        'label' => __( 'Cor da chamada', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'financieamento'
+    ) ) );
+
+    $wp_customize->add_setting( 'top_button', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Learn More', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'top_button', array(
+        'label' => __( 'Botão de chamada', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'financieamento'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_column3_heading', array(
+    $wp_customize->add_setting( 'top_button_link', array(
         'type' => 'theme_mod',
-        'default' => __( 'Subscribe', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_column3_heading', array(
-        'label' => __( 'Column 3 Heading', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'top_button_link', array(
+        'label' => __( 'Link do botão de chamada', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'financieamento'
+    ));
+
+    $wp_customize->add_setting( 'top_button_color', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'top_button_color', array(
+        'label' => __( 'Cor do botão de chamada', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'financieamento'
+    ) ) );
+
+    $wp_customize->add_setting( 'insticional_chamada', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Services', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_chamada', array(
+        'label' => __( 'Chamada', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'insticional'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_subscribe_text', array(
+    $wp_customize->add_setting( 'color_chamada', array(
         'type' => 'theme_mod',
-        'default' => __( 'Subscribe to our newsletter and get exclusive updates directly in your inbox.', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_subscribe_text', array(
-        'label' => __( 'Subscribe text', 'catalogo_veiculos' ),
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'color_chamada', array(
+        'label' => __( 'Cor do texto da chamada', 'modelo2' ),
+        'type' => 'color',
+        'section' => 'insticional'
+    ) ) );
+
+    $wp_customize->add_setting( 'insticional_titulo', array(
+        'type' => 'theme_mod',
+        'default' => __( 'We can do useful things for our clients', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_titulo', array(
+        'label' => __( 'Título', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_texto', array(
+        'type' => 'theme_mod',
+        'default' => __( 'You never change things by fighting the existing reality. To change something, build a new model that makes the existing model obsolete.', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_texto', array(
+        'label' => __( 'Texto', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_button', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Learn More', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_button', array(
+        'label' => __( 'Botão de chamada', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'insticional'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_social_heading', array(
+    $wp_customize->add_setting( 'insticional_button_link', array(
         'type' => 'theme_mod',
-        'default' => __( 'Get Social', 'catalogo_veiculos' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_social_heading', array(
-        'label' => __( 'Social Heading', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'insticional_button_link', array(
+        'label' => __( 'Link do botão de chamada', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco01_icon', array(
+        'type' => 'theme_mod',
+        'default' => __( 'fa-2x fa-money-check fas iconsmarging', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco01_icon', array(
+        'label' => __( 'Ícone Bloco 01', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'insticional'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_social_fb', array(
+    $wp_customize->add_setting( 'show_icon01', array(
         'type' => 'theme_mod',
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_social_fb', array(
-        'label' => __( 'Facebook', 'catalogo_veiculos' ),
-        'type' => 'url',
-        'section' => 'shop_footer'
+    $wp_customize->add_control( 'show_icon01', array(
+        'label' => __( 'Mostrar icone 01', 'modelo2' ),
+        'type' => 'checkbox',
+        'section' => 'insticional'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_social_tw', array(
+    $wp_customize->add_setting( 'insticional_bloco01', array(
         'type' => 'theme_mod',
+        'default' => __( 'Compra', 'modelo2' ),
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_social_tw', array(
-        'label' => __( 'Twitter', 'catalogo_veiculos' ),
-        'type' => 'url',
-        'section' => 'shop_footer'
-    ));
-
-    $wp_customize->add_setting( 'shop_footer_social_ig', array(
-        'type' => 'theme_mod',
-        'sanitize_callback' => $pgwp_sanitize
-    ));
-
-    $wp_customize->add_control( 'shop_footer_social_ig', array(
-        'label' => __( 'Instagram', 'catalogo_veiculos' ),
-        'type' => 'url',
-        'section' => 'shop_footer'
-    ));
-
-    $wp_customize->add_setting( 'shop_footer_social_ln', array(
-        'type' => 'theme_mod',
-        'sanitize_callback' => $pgwp_sanitize
-    ));
-
-    $wp_customize->add_control( 'shop_footer_social_ln', array(
-        'label' => __( 'LinkedIn', 'catalogo_veiculos' ),
-        'type' => 'url',
-        'section' => 'shop_footer'
-    ));
-
-    $wp_customize->add_setting( 'shop_footer_social_yt', array(
-        'type' => 'theme_mod',
-        'sanitize_callback' => $pgwp_sanitize
-    ));
-
-    $wp_customize->add_control( 'shop_footer_social_yt', array(
-        'label' => __( 'YouTube', 'catalogo_veiculos' ),
-        'type' => 'url',
-        'section' => 'shop_footer'
-    ));
-
-    $wp_customize->add_setting( 'shop_footer_copyright', array(
-        'type' => 'theme_mod',
-        'default' => __( 'All Rights Reserved - Company Name', 'catalogo_veiculos' ),
-        'sanitize_callback' => $pgwp_sanitize
-    ));
-
-    $wp_customize->add_control( 'shop_footer_copyright', array(
-        'label' => __( 'Copyright notice', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'insticional_bloco01', array(
+        'label' => __( 'Título Bloco 01', 'modelo2' ),
         'type' => 'text',
-        'section' => 'shop_footer'
+        'section' => 'insticional'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_privacy_link', array(
+    $wp_customize->add_setting( 'insticional_bloco01_texto', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae congue tortor.', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco01_texto', array(
+        'label' => __( 'Texto Bloco 01', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco01_botao', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Learn More', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco01_botao', array(
+        'label' => __( 'Botão Bloco 01', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco01_botao_link', array(
         'type' => 'theme_mod',
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_privacy_link', array(
-        'label' => __( 'Privacy Policy Link', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'insticional_bloco01_botao_link', array(
+        'label' => __( 'Link Bloco 01', 'modelo2' ),
         'type' => 'url',
-        'section' => 'shop_footer'
+        'section' => 'insticional'
     ));
 
-    $wp_customize->add_setting( 'shop_footer_terms_link', array(
+    $wp_customize->add_setting( 'insticional_bloco02_icon', array(
+        'type' => 'theme_mod',
+        'default' => __( 'fa-2x fa-hand-holding-usd fas iconsmarging', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco02_icon', array(
+        'label' => __( 'Ícone Bloco 02', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'show_icon02', array(
         'type' => 'theme_mod',
         'sanitize_callback' => $pgwp_sanitize
     ));
 
-    $wp_customize->add_control( 'shop_footer_terms_link', array(
-        'label' => __( 'Terms link', 'catalogo_veiculos' ),
+    $wp_customize->add_control( 'show_icon02', array(
+        'label' => __( 'Mostrar icone 02', 'modelo2' ),
+        'type' => 'checkbox',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco02', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Venda', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco02', array(
+        'label' => __( 'Título Bloco 02', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco02_texto', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae congue tortor.', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco02_texto', array(
+        'label' => __( 'Texto Bloco 02', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco02_botao', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Learn More', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco02_botao', array(
+        'label' => __( 'Botão Bloco 02', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco02_botao_link', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco02_botao_link', array(
+        'label' => __( 'Link Bloco 02', 'modelo2' ),
         'type' => 'url',
-        'section' => 'shop_footer'
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco03_icon', array(
+        'type' => 'theme_mod',
+        'default' => __( 'fa-2x fa-phone-volume fas iconsmarging', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco03_icon', array(
+        'label' => __( 'Ícone Bloco 03', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'show_icon03', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'show_icon03', array(
+        'label' => __( 'Mostrar icone 03', 'modelo2' ),
+        'type' => 'checkbox',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco03', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Ligamos pra você', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco03', array(
+        'label' => __( 'Título Bloco 03', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco03_texto', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae congue tortor.', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco03_texto', array(
+        'label' => __( 'Texto Bloco 03', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco03_botao', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Learn More', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco03_botao', array(
+        'label' => __( 'Botão Bloco 03', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'insticional_bloco03_botao_link', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'insticional_bloco03_botao_link', array(
+        'label' => __( 'Link Bloco 03', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'insticional'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_number', array(
+        'type' => 'theme_mod',
+        'default' => '<span class="me-md-1"> </span> <span class="d-md-inline d-none"> +0-123-456-789 </span>',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_number', array(
+        'label' => __( 'Numero de contato', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_number_link', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_number_link', array(
+        'label' => __( 'Link do número de contato', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_email', array(
+        'type' => 'theme_mod',
+        'default' => '<span class="d-md-inline d-none"> info@company.com </span>',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_email', array(
+        'label' => __( 'E-mail de contato', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_email_link', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_email_link', array(
+        'label' => __( 'Link do email', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_facebook', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_facebook', array(
+        'label' => __( 'Link facebook', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_instagram', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_instagram', array(
+        'label' => __( 'Link instagram', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'address_contact_tiktop', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'address_contact_tiktop', array(
+        'label' => __( 'Link tiktop', 'modelo2' ),
+        'type' => 'url',
+        'section' => 'address_contact'
+    ));
+
+    $wp_customize->add_setting( 'navbar_image', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'navbar_image', array(
+        'label' => __( 'Logo do site', 'modelo2' ),
+        'type' => 'media',
+        'mime_type' => 'image',
+        'section' => 'navbar'
+    ) ) );
+
+    $wp_customize->add_setting( 'footer_menu', array(
+        'type' => 'theme_mod',
+        'default' => __( 'About', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'footer_menu', array(
+        'label' => __( 'Bloco 01', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'footer'
+    ));
+
+    $wp_customize->add_setting( 'footer_info_01', array(
+        'type' => 'theme_mod',
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'footer_info_01', array(
+        'label' => __( 'Informações do bloco 01', 'modelo2' ),
+        'type' => 'textarea',
+        'section' => 'footer'
+    ));
+
+    $wp_customize->add_setting( 'footer_bloco02', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Services', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'footer_bloco02', array(
+        'label' => __( 'Bloco 02', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'footer'
+    ));
+
+    $wp_customize->add_setting( 'copyright', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Copyright © 2020 Company Name', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'copyright', array(
+        'label' => __( 'Copyright', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'footer'
+    ));
+
+    $wp_customize->add_setting( 'dev', array(
+        'type' => 'theme_mod',
+        'default' => __( 'Copyright © 2020 Company Name', 'modelo2' ),
+        'sanitize_callback' => $pgwp_sanitize
+    ));
+
+    $wp_customize->add_control( 'dev', array(
+        'label' => __( 'Desenvolvido', 'modelo2' ),
+        'type' => 'text',
+        'section' => 'footer'
     ));
 
     /* Pinegrow generated Customizer Controls End */
 
 }
-add_action( 'customize_register', 'starter_shop_customize_register' );
-endif;// starter_shop_customize_register
+add_action( 'customize_register', 'modelo2_customize_register' );
+endif;// modelo2_customize_register
 
 
-if ( ! function_exists( 'starter_shop_enqueue_scripts' ) ) :
-    function starter_shop_enqueue_scripts() {
+if ( ! function_exists( 'modelo2_enqueue_scripts' ) ) :
+    function modelo2_enqueue_scripts() {
 
         /* Pinegrow generated Enqueue Scripts Begin */
 
-    wp_enqueue_script( 'catalogo_veiculos-custom', get_template_directory_uri() . '/custom.js', array( 'jquery' ), null, true );
+    wp_deregister_script( 'modelo2-popper' );
+    wp_enqueue_script( 'modelo2-popper', get_template_directory_uri() . '/assets/js/popper.min.js', false, null, true);
 
-    wp_deregister_script( 'catalogo_veiculos-popper' );
-    wp_enqueue_script( 'catalogo_veiculos-popper', get_template_directory_uri() . '/assets/js/popper.min.js', false, null, true);
+    wp_deregister_script( 'modelo2-bootstrap' );
+    wp_enqueue_script( 'modelo2-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', false, null, true);
 
-    wp_deregister_script( 'catalogo_veiculos-bootstrap' );
-    wp_enqueue_script( 'catalogo_veiculos-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', false, null, true);
+    wp_deregister_script( 'modelo2-all' );
+    wp_enqueue_script( 'modelo2-all', 'https://use.fontawesome.com/releases/v5.13.1/js/all.js', false, null, true);
 
     /* Pinegrow generated Enqueue Scripts End */
 
         /* Pinegrow generated Enqueue Styles Begin */
 
-    wp_deregister_style( 'catalogo_veiculos-bootstrap' );
-    wp_enqueue_style( 'catalogo_veiculos-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css', false, null, 'all');
+    wp_deregister_style( 'modelo2-bootstrap' );
+    wp_enqueue_style( 'modelo2-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css', false, null, 'all');
 
-    wp_deregister_style( 'catalogo_veiculos-blocks' );
-    wp_enqueue_style( 'catalogo_veiculos-blocks', get_template_directory_uri() . '/blocks.css', false, null, 'all');
+    wp_deregister_style( 'modelo2-blocks' );
+    wp_enqueue_style( 'modelo2-blocks', get_template_directory_uri() . '/blocks.css', false, null, 'all');
 
-    wp_deregister_style( 'catalogo_veiculos-style' );
-    wp_enqueue_style( 'catalogo_veiculos-style', get_bloginfo('stylesheet_url'), false, null, 'all');
+    wp_deregister_style( 'modelo2-style' );
+    wp_enqueue_style( 'modelo2-style', get_bloginfo('stylesheet_url'), false, null, 'all');
 
-    wp_deregister_style( 'catalogo_veiculos-custom' );
-    wp_enqueue_style( 'catalogo_veiculos-custom', get_template_directory_uri() . '/custom.css', false, null, 'all');
+    wp_deregister_style( 'modelo2-fontawesome' );
+    wp_enqueue_style( 'modelo2-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, null, 'all');
 
-    wp_deregister_style( 'catalogo_veiculos-gallery' );
-    wp_enqueue_style( 'catalogo_veiculos-gallery', get_template_directory_uri() . '/gallery.css', false, null, 'all');
-
-    wp_deregister_style( 'catalogo_veiculos-button' );
-    wp_enqueue_style( 'catalogo_veiculos-button', get_template_directory_uri() . '/button.css', false, null, 'all');
-
-    wp_deregister_style( 'catalogo_veiculos-notice' );
-    wp_enqueue_style( 'catalogo_veiculos-notice', get_template_directory_uri() . '/notice.css', false, null, 'all');
+    wp_deregister_style( 'modelo2-all' );
+    wp_enqueue_style( 'modelo2-all', 'https://use.fontawesome.com/releases/v5.13.1/css/all.css', false, null, 'all');
 
     /* Pinegrow generated Enqueue Styles End */
 
     }
-    add_action( 'wp_enqueue_scripts', 'starter_shop_enqueue_scripts' );
+    add_action( 'wp_enqueue_scripts', 'modelo2_enqueue_scripts' );
 endif;
 
 function pgwp_sanitize_placeholder($input) { return $input; }
@@ -433,8 +922,6 @@ function pgwp_sanitize_placeholder($input) { return $input; }
 require_once "inc/custom.php";
 require_once "inc/wp_pg_helpers.php";
 require_once "inc/wc_pg_helpers.php";
-require_once "inc/wp_pg_blocks_helpers.php";
-require_once "inc/wp_simple_form_mailer.php";
 require_once "inc/wp_smart_navwalker.php";
 require_once "inc/wp_pg_pagination.php";
 
@@ -442,19 +929,17 @@ require_once "inc/wp_pg_pagination.php";
 
 /* Setting up theme supports options */
 
-function starter_shop_setup_theme_supports() {
+function modelo2_setup_theme_supports() {
     // Don't edit anything between the following comments.
     /* Pinegrow generated Theme Supports Begin */
 
     add_theme_support( 'woocommerce' );
     add_theme_support( 'wc-product-gallery-zoom' );
     add_theme_support( 'wc-product-gallery-lightbox' );
-    add_theme_support( 'wc-product-gallery-slider' );    
-    //Tell WP to scope loaded editor styles to the block editor                    
-    add_theme_support( 'editor-styles' );
+    add_theme_support( 'wc-product-gallery-slider' );
     /* Pinegrow generated Theme Supports End */
 }
-add_action('after_setup_theme', 'starter_shop_setup_theme_supports');
+add_action('after_setup_theme', 'modelo2_setup_theme_supports');
 
 /* End of setting up theme supports options */
 
@@ -464,8 +949,8 @@ add_action('after_setup_theme', 'starter_shop_setup_theme_supports');
 
     /* This filter lets us multiple variants of the same template name. It also handles locating the templates that are present in the theme or plugin. */        
     add_filter( 'wc_get_template', function( $template, $template_name, $args, $template_path, $default_path ) {
-        global $pg_wc_use_template, $pg_wc_use_template_cache_catalogo_veiculos;
-        if(!isset($pg_wc_use_template_cache_catalogo_veiculos)) $pg_wc_use_template_cache_catalogo_veiculos = array();
+        global $pg_wc_use_template, $pg_wc_use_template_cache_modelo2;
+        if(!isset($pg_wc_use_template_cache_modelo2)) $pg_wc_use_template_cache_modelo2 = array();
         
         if( !empty($pg_wc_use_template) ) {
             $template_variant = trailingslashit( get_template_directory() ) . 'woocommerce/' . str_replace( '.php', '-'.$pg_wc_use_template.'.php', $template_name);
@@ -475,15 +960,15 @@ add_action('after_setup_theme', 'starter_shop_setup_theme_supports');
             $template_variant = trailingslashit( get_template_directory() ) . 'woocommerce/' . $template_name;
         }
             
-        if(isset($pg_wc_use_template_cache_catalogo_veiculos[ $template_key ])) {
-            if($pg_wc_use_template_cache_catalogo_veiculos[ $template_key ]) {
+        if(isset($pg_wc_use_template_cache_modelo2[ $template_key ])) {
+            if($pg_wc_use_template_cache_modelo2[ $template_key ]) {
                 $template = $template_variant;
             }
         } else if(file_exists($template_variant)) {
             $template = $template_variant;
-            $pg_wc_use_template_cache_catalogo_veiculos[ $template_key ] = true;
+            $pg_wc_use_template_cache_modelo2[ $template_key ] = true;
         } else {
-            $pg_wc_use_template_cache_catalogo_veiculos[ $template_key ] = false;
+            $pg_wc_use_template_cache_modelo2[ $template_key ] = false;
         }
  
         return $template;
@@ -493,88 +978,37 @@ add_action('after_setup_theme', 'starter_shop_setup_theme_supports');
 /* End Setting up WooCommerce filters */
 
 
-/* Overriding WooCommerce template functions */
-
-// Don't edit anything between the following comments.
-/* Pinegrow generated Override WooCommerce Functions Begin */
-
-if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
-function woocommerce_template_loop_product_thumbnail() {
-    wc_get_template( 'loop/product-image.php' );                    
-}
-}
-
-if ( ! function_exists( 'woocommerce_template_loop_product_title' ) ) {
-function woocommerce_template_loop_product_title() {
-    wc_get_template( 'loop/title.php' );                    
-}
-}
-
-    /* Pinegrow generated Override WooCommerce Functions End */
-
-/* End of Overriding WooCommerce template functions */
-
-
 /* Creating Editor Blocks with Pinegrow */
 
-function starter_shop_blocks_init() {
+function modelo2_blocks_init() {
     // Register blocks. Don't edit anything between the following comments.
     /* Pinegrow generated Register Pinegrow Blocks Begin */
-    require_once 'blocks/front-hero/front-hero_register.php';
-    require_once 'blocks/front-small-banner/front-small-banner_register.php';
-    require_once 'blocks/front-small-banners/front-small-banners_register.php';
-    require_once 'blocks/shop-front-cta/shop-front-cta_register.php';
-    require_once 'blocks/shop-product-list/shop-product-list_register.php';
-    require_once 'blocks/shop-product-pick/shop-product-pick_register.php';
-    require_once 'blocks/shop-categories/shop-categories_register.php';
-    require_once 'blocks/shop-categories-select/shop-categories-select_register.php';
-    require_once 'blocks/shop-newsletter/shop-newsletter_register.php';
-    require_once 'blocks/shop-feature/shop-feature_register.php';
-    require_once 'blocks/shop-features/shop-features_register.php';
-    require_once 'blocks/shop-mosaic/shop-mosaic_register.php';
-    require_once 'blocks/shop-sidebar-heading/shop-sidebar-heading_register.php';
-    require_once 'blocks/shop-sidebar-search/shop-sidebar-search_register.php';
 
     /* Pinegrow generated Register Pinegrow Blocks End */
 }
-add_action('init', 'starter_shop_blocks_init');
+add_action('init', 'modelo2_blocks_init');
 
 /* End of creating Editor Blocks with Pinegrow */
 
 
 /* Register Blocks Categories */
 
-function starter_shop_register_blocks_categories( $categories ) {
+function modelo2_register_blocks_categories( $categories ) {
 
     // Don't edit anything between the following comments.
     /* Pinegrow generated Register Blocks Category Begin */
 
 $categories = array_merge( $categories, array( array(
         'slug' => 'shop',
-        'title' => __( 'Shop blocks', 'catalogo_veiculos' )
+        'title' => __( 'Shop blocks', 'modelo2' )
     ) ) );
 
     /* Pinegrow generated Register Blocks Category End */
     
     return $categories;
 }
-add_action( version_compare('5.8', get_bloginfo('version'), '<=' ) ? 'block_categories_all' : 'block_categories', 'starter_shop_register_blocks_categories');
+add_action( version_compare('5.8', get_bloginfo('version'), '<=' ) ? 'block_categories_all' : 'block_categories', 'modelo2_register_blocks_categories');
 
 /* End of registering Blocks Categories */
-
-
-/* Loading editor styles for blocks */
-
-function starter_shop_add_blocks_editor_styles() {
-    // Add blocks editor styles. Don't edit anything between the following comments.
-    /* Pinegrow generated Load Blocks Editor Styles Begin */
-    add_editor_style( 'bootstrap/css/bootstrap.min.css' );
-    add_editor_style( 'blocks.css' );
-
-    /* Pinegrow generated Load Blocks Editor Styles End */
-}
-add_action('admin_init', 'starter_shop_add_blocks_editor_styles');
-
-/* End of loading editor styles for blocks */
 
 ?>

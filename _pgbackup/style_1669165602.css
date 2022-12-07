@@ -1,0 +1,84 @@
+.catalogbase {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#navbar {
+    background-color: #000000;
+}
+
+.infocar {
+    display: flex;
+    padding: 8px;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: -1px;
+}
+
+.titleinfocar {
+    font-weight: 700;
+    margin-right: 4px;
+    margin-bottom: 0px;
+}
+
+.infodatacar {
+    margin-bottom: 0px;
+}
+
+.woof_container_inner h4 {
+    font-size: 15px;
+}
+
+.woof_husky_txt-input {
+    display: block;
+    width: 100%;
+    padding: .375rem .375rem .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.woof_price_filter_txt_to,
+.woof_price_filter_txt_from {
+    width: 100%;
+    padding: .375rem .375rem .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.woof_select {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.activeboardradius {
+    border-radius: 0.25rem;
+}

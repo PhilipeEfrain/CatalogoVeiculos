@@ -21,7 +21,7 @@
         return val;
     }
     
-    const block = registerBlockType( 'catalogo-veiculos/shop-sidebar-search', {
+    const block = registerBlockType( 'modelo2/shop-sidebar-search', {
         apiVersion: 2,
         title: 'Shop Sidebar Search',
         icon: 'block-default',
@@ -42,7 +42,7 @@
             return el(Fragment, {}, [
                 
                         el( ServerSideRender, {
-                            block: 'catalogo-veiculos/shop-sidebar-search',
+                            block: 'modelo2/shop-sidebar-search',
                             httpMethod: 'POST',
                             attributes: props.attributes,
                             innerBlocksProps: innerBlocksProps,

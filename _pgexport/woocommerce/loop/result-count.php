@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 ?>
-<div class="col-12"> 
+<div class="col-12">
     <p class="mb-4 text-dark"><?php
 	if ( 1 === intval( $total ) ) {
 		_e( 'Showing the single result', 'woocommerce' );
@@ -14,5 +14,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$last  = min( $total, $per_page * $current );
 		printf( _nx( 'Showing %1$d&ndash;%2$d of %3$d result', 'Showing %1$d&ndash;%2$d of %3$d results', $total, 'with first and last result', 'woocommerce' ), $first, $last, $total );
 	}
-?></p> 
+?></p>
 </div>

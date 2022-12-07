@@ -1,8 +1,8 @@
 <?php
 
         PG_Blocks::register_block_type( array(
-            'name' => 'catalogo-veiculos/shop-sidebar-search',
-            'title' => __( 'Shop Sidebar Search', 'catalogo_veiculos' ),
+            'name' => 'modelo2/shop-sidebar-search',
+            'title' => __( 'Shop Sidebar Search', 'modelo2' ),
             'category' => 'shop',
             'render_template' => 'blocks/shop-sidebar-search/shop-sidebar-search.php',
             'supports' => array('color' => array('background' => false,'text' => false,'gradients' => false,'link' => false,),'typography' => array('fontSize' => false,),'anchor' => false,'align' => false,),
