@@ -4,59 +4,59 @@
         <div class="container  pb-5 pt-5"> 
             <div class="align-items-center row"> 
                 <div class="col-lg-9"> 
-                    <h2 class="h6 text-primary text-uppercase" style="color:<?php echo get_theme_mod( 'financieamento_topo_cor' ); ?> !important;"><?php echo get_theme_mod( 'financieamento_top', __( 'The Latest', 'modelo2' ) ); ?></h2> 
-                    <h3 class="fw-bold h2 mb-4 mb-lg-0 text-white" style="color:<?php echo get_theme_mod( 'financieamento_chamada_cor' ); ?> !important;"><?php echo get_theme_mod( 'financieamento_chamada', __( 'Our ability to feel, act and communicate is indistinguishable from magic.', 'modelo2' ) ); ?></h3>
+                    <h2 class="h6 text-primary text-uppercase" style="color:<?php echo get_theme_mod( 'financieamento_topo_cor' ); ?> !important;"><?php echo get_theme_mod( 'financieamento_top', __( 'The Latest', 'bmotorsautomoveis' ) ); ?></h2> 
+                    <h3 class="fw-bold h2 mb-4 mb-lg-0 text-white" style="color:<?php echo get_theme_mod( 'financieamento_chamada_cor' ); ?> !important;"><?php echo get_theme_mod( 'financieamento_chamada', __( 'Our ability to feel, act and communicate is indistinguishable from magic.', 'bmotorsautomoveis' ) ); ?></h3> 
                 </div>                     
-                <div class="col-lg-auto ms-auto"> <a href="<?php echo get_theme_mod( 'top_button_link', '#' ); ?>" class="btn btn-light pb-2 pe-4 ps-4 pt-2 rounded-pill" style="background-color:<?php echo get_theme_mod( 'top_button_color' ); ?>;color:<?php echo get_theme_mod( 'top_button_text_color' ); ?> !important;"><?php echo get_theme_mod( 'top_button', __( 'Learn More', 'modelo2' ) ); ?></a> 
+                <div class="col-lg-auto ms-auto"> <a href="<?php echo get_theme_mod( 'top_button_link', '#' ); ?>" class="btn btn-light pb-2 pe-4 ps-4 pt-2 rounded-pill" style="background-color:<?php echo get_theme_mod( 'top_button_color' ); ?>;color:<?php echo get_theme_mod( 'top_button_text_color' ); ?> !important;"><?php echo get_theme_mod( 'top_button', __( 'Learn More', 'bmotorsautomoveis' ) ); ?></a> 
                 </div>                     
             </div>                 
         </div>             
-    </section>
+    </section>         
     <!-- Bootstrap core JavaScript
-================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <div class="container pb-5 pt-5">
-        <?php woocommerce_breadcrumb() ?>
-        <div class="gx-lg-5 gy-4 row">
-            <div class="col-lg-9 col-md-8">
-                <div class="align-items-center justify-content-between row">
-                    <div class="col-auto">
-                        <h1 class="mb-4 text-dark"><?php woocommerce_page_title(); ?></h1>
-                    </div>
-                    <?php woocommerce_result_count() ?>
-                </div>
+================================================== -->         
+    <!-- Placed at the end of the document so the pages load faster -->                           
+    <div class="container pb-5 pt-5"> 
+        <?php woocommerce_breadcrumb() ?> 
+        <div class="gx-lg-5 gy-4 row"> 
+            <div class="col-lg-9 col-md-8"> 
+                <div class="align-items-center justify-content-between row"> 
+                    <div class="col-auto"> 
+                        <h1 class="mb-4 text-dark"><?php woocommerce_page_title(); ?></h1> 
+                    </div>                         
+                    <?php woocommerce_result_count() ?> 
+                </div>                     
                 <?php if ( woocommerce_product_loop() ) : ?>
                     <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
-                        <div class="gy-4 mb-5 row row-cols-lg-3 row-cols-sm-2">
+                        <div class="gy-4 mb-5 row row-cols-lg-3 row-cols-sm-2"> 
                             <?php while ( have_posts() ) : the_post(); ?>
                                 <?php global $product, $post; ?>
                                 <?php PG_Helper::rememberShownPost(); ?>
-                                <div <?php wc_product_class('', $product ); ?> id="post-<?php the_ID(); ?>">
-                                    <div class="position-relative"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?></a>
+                                <div <?php wc_product_class('', $product ); ?> id="post-<?php the_ID(); ?>"> 
+                                    <div class="position-relative"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?></a> 
                                         <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?>
                                         <?php if( !empty( $terms ) ) : ?>
                                             <?php foreach( $terms as $term_i => $term ) : ?>
                                                 <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="d-inline-block mb-2 small text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?>
                                             <?php endforeach; ?>
-                                        <?php endif; ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
-                                        <?php woocommerce_template_loop_price() ?>
-                                        <?php woocommerce_show_product_loop_sale_flash() ?>
-                                    </div>
+                                        <?php endif; ?> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a> 
+                                        <?php woocommerce_template_loop_price() ?> 
+                                        <?php woocommerce_show_product_loop_sale_flash() ?> 
+                                    </div>                                         
                                 </div>
-                            <?php endwhile; ?>
+                            <?php endwhile; ?>                                                                                                                                                                                                                                                                         
                         </div>
                     <?php endif; ?>
                 <?php else : ?>
                     <?php do_action( 'woocommerce_no_products_found' ); ?>
-                <?php endif; ?>
-                <?php woocommerce_pagination() ?>
-            </div>
+                <?php endif; ?> 
+                <?php woocommerce_pagination() ?> 
+            </div>                 
             <?php if ( is_active_sidebar( 'search' ) ) : ?>
                 <div class="col-md">
                     <?php dynamic_sidebar( 'search' ); ?>
                 </div>
-            <?php endif; ?>
-        </div>
+            <?php endif; ?> 
+        </div>             
     </div>        
 
 <?php get_footer(); ?>

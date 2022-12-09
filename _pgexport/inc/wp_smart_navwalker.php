@@ -3,7 +3,7 @@
  * Class Name: PG_Smart_Walker_Nav_Menu
  * GitHub URI:
  * Description:
- * Version: 1.0
+ * Version: 2.0
  * Author: Matjaz Trontelj - @pinegrow
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -14,29 +14,45 @@
 
 class PG_Smart_Walker_Nav_Menu extends Walker_Nav_Menu {
 
-    public static $options = array(
+    private static $default_options = array(
         'top_element' => 'ul',
         'sub_element' => 'ul',
         'current_class' => 'current-menu-item',
         'sub_menu_class' => 'sub-menu',
         'item_id_prefix' => 'menu-item-',
-        'template' => '<li id="{ID}" class="{CLASSES}">{LINK_BEFORE}<a {ATTRS}>{TITLE}</a>{LINK_AFTER}</li>'
+        'template' => '<li id="{ID}" class="{CLASSES}">{LINK_BEFORE}<a {ATTRS}>{TITLE}</a>{LINK_AFTER}</li>',
+        'template_item_with_sublevel' => null,
+        'template_sublevel' => null,
+        'template_subitem' => null
     );
+
+    public static $options = array();
+
+    private static $level = 0;
+    private static $current_id = '';
+    private static $count = 0;
+
+    public static function init() {
+        self::$options = self::$default_options;
+        self::$level = 0;
+        self::$current_id = '';
+        self::$count++;
+    }
 
     /**
      * Get the begining or end part of the template
      *
      * @param boolean $start true for begining, false for end part
      */
-    private function get_template_part( $start = true ) {
-        $parts = explode('{SUB}', self::$options['template']);
+    private function get_template_part( $start = true, $template = 'template' ) {
+        $parts = explode('{SUB}', self::$options[ $template ]);
         if(count($parts) == 2) {
             return $start ? $parts[0] : $parts[1];
         }
         //if {SUB} is missing from the template, assume the last closing tag is the end part
-        $idx = strrpos(self::$options['template'], '</');
+        $idx = strrpos(self::$options[ $template ], '</');
         if($idx !== false) {
-            return $start ? substr(self::$options['template'], 0, $idx) : substr(self::$options['template'], $idx);
+            return $start ? substr(self::$options[ $template ], 0, $idx) : substr(self::$options[ $template ], $idx);
         }
     }
 
@@ -52,11 +68,18 @@ class PG_Smart_Walker_Nav_Menu extends Walker_Nav_Menu {
      * @param array  $args   An array of arguments. @see wp_nav_menu()
      */
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
+        self::$level++;
+
         $indent = str_repeat("\t", $depth);
-        $tag = $depth == 0 ? self::$options['top_element'] : self::$options['sub_element'];
-        if(!empty($tag)) {
-            $class = self::$options['sub_menu_class'];
-            $output .= "\n$indent<$tag class=\"$class\">\n";
+
+        if(self::$level > 0 && self::$options['template_sublevel']) {
+            $output .= "\n$indent" . str_replace('{ID}', self::$current_id,self::get_template_part(true, 'template_sublevel'));
+        } else {
+            $tag = $depth == 0 ? self::$options['top_element'] : self::$options['sub_element'];
+            if (!empty($tag)) {
+                $class = self::$options['sub_menu_class'];
+                $output .= "\n$indent<$tag class=\"$class\">\n";
+            }
         }
     }
 
@@ -73,10 +96,16 @@ class PG_Smart_Walker_Nav_Menu extends Walker_Nav_Menu {
      */
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat("\t", $depth);
-        $tag = $depth == 0 ? self::$options['top_element'] : self::$options['sub_element'];
-        if(!empty($tag)) {
-            $output .= "$indent</$tag>\n";
+
+        if(self::$level > 0 && self::$options['template_sublevel']) {
+            $output .= "\n$indent" . self::get_template_part(false, 'template_sublevel');
+        } else {
+            $tag = $depth == 0 ? self::$options['top_element'] : self::$options['sub_element'];
+            if (!empty($tag)) {
+                $output .= "$indent</$tag>\n";
+            }
         }
+        self::$level--;
     }
 
     /**
@@ -131,6 +160,13 @@ class PG_Smart_Walker_Nav_Menu extends Walker_Nav_Menu {
          */
         $id = apply_filters( 'nav_menu_item_id', self::$options['item_id_prefix']. $item->ID, $item, $args, $depth );
 
+        if(empty($id)) {
+            //most likely the default id was already used. Set a count based id
+            $id = self::$options['item_id_prefix'].self::$count.'-'.$item->ID;
+        }
+
+        self::$current_id = $id;
+
         $output .= $indent;
 
         $atts = array();
@@ -169,7 +205,20 @@ class PG_Smart_Walker_Nav_Menu extends Walker_Nav_Menu {
 
         $item_output = $args->before;
 
-        $template = $this->get_template_part(true);
+        $has_sublevel = false;
+
+        if(isset($item->classes) && in_array('menu-item-has-children', $item->classes)) {
+            $has_sublevel = true;
+        }
+
+        $template_key = 'template';
+        if(self::$level === 0 && $has_sublevel) {
+            $template_key = 'template_item_with_sublevel';
+        } else if(self::$level > 0 && self::$options['template_subitem']) {
+            $template_key = 'template_subitem';
+        }
+
+        $template = $this->get_template_part(true, $template_key);
         $template = str_replace( '{LINK_BEFORE}', $args->link_before, $template);
         $template = str_replace( '{LINK_AFTER}', $args->link_after, $template);
         $template = str_replace( '{TITLE}', apply_filters( 'the_title', $item->title, $item->ID ), $template);
@@ -212,7 +261,19 @@ class PG_Smart_Walker_Nav_Menu extends Walker_Nav_Menu {
      * @param array  $args   An array of arguments. @see wp_nav_menu()
      */
     public function end_el( &$output, $item, $depth = 0, $args = array() ) {
-        $output .= $this->get_template_part(false)."\n"; //get the ending part of the template
+        $has_sublevel = false;
+
+        if(isset($item->classes) && in_array('menu-item-has-children', $item->classes)) {
+            $has_sublevel = true;
+        }
+
+        $template_key = 'template';
+        if(self::$level === 0 && $has_sublevel) {
+            $template_key = 'template_item_with_sublevel';
+        } else if(self::$level > 0 && self::$options['template_subitem']) {
+            $template_key = 'template_subitem';
+        }
+        $output .= $this->get_template_part(false, $template_key)."\n"; //get the ending part of the template
     }
 
 } // PG_Smart_Walker_Nav_Menu

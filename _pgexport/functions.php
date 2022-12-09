@@ -881,32 +881,32 @@ if ( ! function_exists( 'modelo2_enqueue_scripts' ) ) :
         /* Pinegrow generated Enqueue Scripts Begin */
 
     wp_deregister_script( 'modelo2-popper' );
-    wp_enqueue_script( 'modelo2-popper', get_template_directory_uri() . '/assets/js/popper.min.js', false, null, true);
+    wp_enqueue_script( 'modelo2-popper', get_template_directory_uri() . '/assets/js/popper.min.js', [], '1.0.3', true);
 
     wp_deregister_script( 'modelo2-bootstrap' );
-    wp_enqueue_script( 'modelo2-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', false, null, true);
+    wp_enqueue_script( 'modelo2-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', [], '1.0.3', true);
 
     wp_deregister_script( 'modelo2-all' );
-    wp_enqueue_script( 'modelo2-all', 'https://use.fontawesome.com/releases/v5.13.1/js/all.js', false, null, true);
+    wp_enqueue_script( 'modelo2-all', 'https://use.fontawesome.com/releases/v5.13.1/js/all.js', [], '1.0.3', true);
 
     /* Pinegrow generated Enqueue Scripts End */
 
         /* Pinegrow generated Enqueue Styles Begin */
 
     wp_deregister_style( 'modelo2-bootstrap' );
-    wp_enqueue_style( 'modelo2-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css', false, null, 'all');
+    wp_enqueue_style( 'modelo2-bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css', [], '1.0.3', 'all');
 
     wp_deregister_style( 'modelo2-blocks' );
-    wp_enqueue_style( 'modelo2-blocks', get_template_directory_uri() . '/blocks.css', false, null, 'all');
+    wp_enqueue_style( 'modelo2-blocks', get_template_directory_uri() . '/blocks.css', [], '1.0.3', 'all');
 
     wp_deregister_style( 'modelo2-style' );
-    wp_enqueue_style( 'modelo2-style', get_bloginfo('stylesheet_url'), false, null, 'all');
+    wp_enqueue_style( 'modelo2-style', get_bloginfo('stylesheet_url'), [], '1.0.3', 'all');
 
     wp_deregister_style( 'modelo2-fontawesome' );
-    wp_enqueue_style( 'modelo2-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', false, null, 'all');
+    wp_enqueue_style( 'modelo2-fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', [], '1.0.3', 'all');
 
     wp_deregister_style( 'modelo2-all' );
-    wp_enqueue_style( 'modelo2-all', 'https://use.fontawesome.com/releases/v5.13.1/css/all.css', false, null, 'all');
+    wp_enqueue_style( 'modelo2-all', 'https://use.fontawesome.com/releases/v5.13.1/css/all.css', [], '1.0.3', 'all');
 
     /* Pinegrow generated Enqueue Styles End */
 
@@ -920,10 +920,10 @@ function pgwp_sanitize_placeholder($input) { return $input; }
  */
 /* Pinegrow generated Include Resources Begin */
 require_once "inc/custom.php";
-require_once "inc/wp_pg_helpers.php";
-require_once "inc/wc_pg_helpers.php";
-require_once "inc/wp_smart_navwalker.php";
-require_once "inc/wp_pg_pagination.php";
+if( !class_exists( 'PG_Helper' ) ) { require_once "inc/wp_pg_helpers.php"; }
+if( !class_exists( 'PG_WC_Helper' ) ) { require_once "inc/wc_pg_helpers.php"; }
+if( !class_exists( 'PG_Smart_Walker_Nav_Menu' ) ) { require_once "inc/wp_smart_navwalker.php"; }
+if( !class_exists( 'PG_Pagination' ) ) { require_once "inc/wp_pg_pagination.php"; }
 
     /* Pinegrow generated Include Resources End */
 
